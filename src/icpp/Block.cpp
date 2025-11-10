@@ -2,47 +2,72 @@
 #include <iostream>
 Block::Block(): s(1),px(0.0),py(0.0),pz(0.0)
 {
-       faces.push_back({
-            {0, 0, 1},
-            { {px -s, py +s, pz+s}, {px + s, py + -s, pz + -s}, 
-            {px + s, py + -s, pz + s}, {px + s, py + -s, pz + s} }
-        });
+       // FRONT (positive Z)
+faces.push_back({
+    {0, 0, 1},
+    {
+        {px - s, py + s, pz + s},
+        {px + s, py + s, pz + s},
+        {px + s, py - s, pz + s},
+        {px - s, py - s, pz + s}
+    }
+});
 
-        // BACK
-        faces.push_back({
-            {0, 0, -1},
-            { {px + s, py + s, pz + -s}, {px + -s, py + s, pz + -s}, {px + -s, py + -s, pz + -s}, 
-            {px + s, py + -s, pz + -s} }
-        });
+// BACK (negative Z)
+faces.push_back({
+    {0, 0, -1},
+    {
+        {px + s, py + s, pz - s},
+        {px - s, py + s, pz - s},
+        {px - s, py - s, pz - s},
+        {px + s, py - s, pz - s}
+    }
+});
 
-        // LEFT
-        faces.push_back({
-            {-1, 0, 0},
-            { {px + -s, py + s, pz + -s}, {px + -s, py + s, pz + s}, {px + -s, py + -s, pz + s}, 
-            {px + -s, py + -s, pz + -s} }
-        });
+// LEFT (negative X)
+faces.push_back({
+    {-1, 0, 0},
+    {
+        {px - s, py + s, pz - s},
+        {px - s, py + s, pz + s},
+        {px - s, py - s, pz + s},
+        {px - s, py - s, pz - s}
+    }
+});
 
-        // RIGHT
-        faces.push_back({
-            {1, 0, 0},
-            { {px + s, py + s, pz + s}, {px + s, py + s, pz + -s}, {px + s, py + -s, pz + -s}
-            , {px + s, py + -s, pz + s} }
-        });
+// RIGHT (positive X)
+faces.push_back({
+    {1, 0, 0},
+    {
+        {px + s, py + s, pz + s},
+        {px + s, py + s, pz - s},
+        {px + s, py - s, pz - s},
+        {px + s, py - s, pz + s}
+    }
+});
 
-        // TOP
-        faces.push_back({
-            {0, 1, 0},
-            { {px + s, py + s, pz + s}, {px + -s, py + s, pz + s},
-             {px + -s, py + s, pz + -s}, {px + s, py + s, pz + -s}}
-        });
+// TOP (positive Y)
+faces.push_back({
+    {0, 1, 0},
+    {
+        {px + s, py + s, pz + s},
+        {px - s, py + s, pz + s},
+        {px - s, py + s, pz - s},
+        {px + s, py + s, pz - s}
+    }
+});
 
-        // BOTTOM
-        faces.push_back({
-            {0, -1, 0},
-            { {px + -s, py + -s, pz + s}, {px + s, py + -s, pz + s},
-             {px + s, py + -s, pz + -s}, {px + -s, py + -s, pz + -s} }
-        });
-    
+// BOTTOM (negative Y)
+faces.push_back({
+    {0, -1, 0},
+    {
+        {px - s, py - s, pz + s},
+        {px + s, py - s, pz + s},
+        {px + s, py - s, pz - s},
+        {px - s, py - s, pz - s}
+    }
+});
+
 }
 Block::~Block(){}
 

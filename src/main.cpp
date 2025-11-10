@@ -32,11 +32,11 @@ int main(void)
 		int mpx = static_cast<float>(b.get_px());
 		int mpy = static_cast<float>(b.get_py());
 		int mpz = static_cast<float>(b.get_pz());
-		for (size_t x = 0; x < 3; x++)
+		for (float x = 0; x < 1; x++)
 		{
-			for (size_t y = 0; y < 3; y++)
+			for (float y = 0; y < 1; y++)
 			{
-				for (size_t z = 0; z < 3; z++)
+				for (float z = 0; z < 1; z++)
 				{
 					b.DrawCube(mpx+x,mpy+y,mpz+z,b.get_s());
 					DrawCubeWires({(float)x,(float)y,(float)z},2,2,2,RED);
