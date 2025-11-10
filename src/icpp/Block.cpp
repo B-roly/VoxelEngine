@@ -1,5 +1,6 @@
 #include "Block.hpp"
-Block::Block(): s(1.0),px(0),py(0),pz(0)
+#include <iostream>
+Block::Block(): s(1),px(0.0),py(0.0),pz(0.0)
 {
        faces.push_back({
             {0, 0, 1},
@@ -43,14 +44,15 @@ Block::Block(): s(1.0),px(0),py(0),pz(0)
         });
     
 }
-Block::Block(float ns,float npx,float npy,float npz)
-{
-    s = ns;
-    px =npx;
-    py = npy;
-    pz = npz;
-}
 Block::~Block(){}
+
+float Block::get_s(){return s;}
+float Block::get_px(){return px;}
+float Block::get_py(){return py;}
+float Block::get_pz(){return pz;}
+void Block::set_px(float npx){px = npx ;}
+void Block::set_py(float npy){py = npy;}
+void Block::set_pz(float npz){pz = npz;}
 void Block :: DrawCube(float px,float py,float pz,float s)
 {
     rlBegin(RL_QUADS);
@@ -60,8 +62,10 @@ void Block :: DrawCube(float px,float py,float pz,float s)
         rlNormal3f(face.normal.x, face.normal.y, face.normal.z);
 
         for (const auto& v : face.vertices) {
-            rlVertex3f(v.x, v.y, v.z);
+            rlVertex3f(px + v.x, py + v.y, pz + v.z);
         }
     }
+    // std::cout<<px;
+	// std::cout<<py;
     rlEnd();
 }

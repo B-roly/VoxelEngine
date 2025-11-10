@@ -20,26 +20,34 @@ int main(void)
 	Vector3 pos{0,0,0};
 	InitWindow(800, 800, "PG");
     Block b;
+	 std::cout<<"py :"<<b.get_py()<<std::endl;
 	SetTargetFPS(60);
 	while (!WindowShouldClose())
 	{
+
+		UpdateCamera(&cam3d, CAMERA_FREE);
+		if (IsKeyPressed(KEY_Z)) cam3d.target = (Vector3){ 0.0f, 0.0f, 0.0f };
 		  BeginDrawing();
 		BeginMode3D(cam3d);
-        // for (size_t i = 0; i < 32; i++)
-        // {
-        //     for (size_t j = 0; j < 32; j++)
-        //     {
-        //         for (size_t k = 0; k < 32; k++)
-        //         {
-                    b.DrawCube(0,10,0,1.0);
-        //         }
-                
-        //     }
-            
-        // }
+		int mpx = static_cast<float>(b.get_px());
+		int mpy = static_cast<float>(b.get_py());
+		int mpz = static_cast<float>(b.get_pz());
+		for (size_t x = 0; x < 3; x++)
+		{
+			for (size_t y = 0; y < 3; y++)
+			{
+				for (size_t z = 0; z < 3; z++)
+				{
+					b.DrawCube(mpx+x,mpy+y,mpz+z,b.get_s());
+					DrawCubeWires({(float)x,(float)y,(float)z},2,2,2,RED);
+				}
+				
+			}
+			
+		}
+		
         
 		
-		DrawCubeWires({0,0,0},10,10,10,BLACK);
 		ClearBackground(BLACK);
 		EndMode3D();
 		EndDrawing();

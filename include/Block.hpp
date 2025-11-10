@@ -7,7 +7,6 @@
 struct Vertex {
     float x, y, z;
 };
-
 struct Normal {
     float x, y, z;
 };
@@ -27,8 +26,15 @@ class Block
     public:
       Block();
       Block(float ns,float npx,float npy,float npz);
-
       ~Block();
+      float get_px();
+      float get_py();
+      float get_pz();
+      float get_s();
+      //setters
+      void set_px(float npx);
+      void set_py(float npy);
+      void set_pz(float npz);
     void DrawCube(float px,float py,float pz,float s);
 };
 #endif
